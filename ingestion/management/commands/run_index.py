@@ -1,7 +1,10 @@
 import os
-from django.core.management.base import BaseCommand
-from ingestion.models import MpanCore, MeterReadingType, RegisterReading
 from datetime import datetime
+
+from django.core.management.base import BaseCommand
+
+from ingestion.models import MpanCore, MeterReadingType, RegisterReading
+
 
 class Command(BaseCommand):
     help = 'Import electricity meter readings from a UFF file'
@@ -31,14 +34,14 @@ class Command(BaseCommand):
                         defaults={'bsc_validation_status': bsc_validation_status}
                     )
 
-                    self.stdout.write(self.style.SUCCESS(f"Found MPAN: {mpan}, Status: {bsc_validation_status}"))
+                    self.stdout.write(self.style.SUCCESS(
+                        f"Found MPAN: {mpan}, Status: {bsc_validation_status}"))
 
                 elif parts[0] == '028':
                     # MeterReadingType object creation
                     if mpan_core:
                         meter_id = parts[1]
                         reading_type = parts[2] if len(parts) > 2 else "Unknown"
-
 
                         meter_type, created = MeterReadingType.objects.get_or_create(
                             meter_id=meter_id,

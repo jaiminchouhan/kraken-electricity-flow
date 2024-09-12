@@ -8,12 +8,14 @@ class MpanCore(models.Model):
     def __str__(self):
         return f"{self.mpan_core_id} - {self.bsc_validation_status}"
 
+
 class MeterReadingType(models.Model):
     meter_id = models.CharField(max_length=50, unique=True)
     reading_type = models.CharField(max_length=50)
 
     def __str__(self):
         return f"{self.meter_id} - {self.reading_type}"
+
 
 class RegisterReading(models.Model):
     meter_register_id = models.CharField(max_length=50)
