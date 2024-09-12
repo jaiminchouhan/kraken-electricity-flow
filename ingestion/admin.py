@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import MpanCore, MeterReadingType, RegisterReading
 
-# Register your models here.
+admin.site.register(MpanCore)
+admin.site.register(MeterReadingType)
+admin.site.register(RegisterReading)
