@@ -19,11 +19,11 @@ class RegisterReading(models.Model):
     meter_register_id = models.CharField(max_length=50)
     timestamp = models.DateTimeField()
     reading = models.FloatField()
-    md_reset_timestamp = models.DateTimeField()
-    md_reset_number = models.FloatField()
-    reading_flag = models.CharField(max_length=50)
-    reading_method = models.CharField(max_length=50)
+    md_reset_timestamp = models.DateTimeField(null=True, blank=True)
+    md_reset_number = models.FloatField(null=True, blank=True)
+    reading_flag = models.CharField(max_length=50, null=True, blank=True)
+    reading_method = models.CharField(max_length=50, null=True, blank=True)
     filename = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"Reading for {self.meter.meter_register_id} at {self.timestamp}: {self.reading}"
+        return f"Reading for {self.meter_register_id} at {self.timestamp}: {self.reading}"

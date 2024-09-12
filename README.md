@@ -29,9 +29,17 @@ The **Ingestion** app within the **electricity_flow** project is a Django applic
    git clone git_url_here
    cd ingestion
 
+## Pre requisites
+
+* Valid python and django installation
+
 ## How to run
 
-PLACEHOLDER
+* Navigate to the `/kraken/electricity_flow/electricity_flow` directory
+* In a new terminal tab, run  `python3 manage.py migrate` to build the database
+* In a new terminal tab, run  `python3 manage.py runserver` to start the app
+* Navigate to the Django admin panel to view the new tables http://127.0.0.1:8000/admin/
+* With the app still running, run this command to import data from a specified file `python3 manage.py run_index FILENAME_HERE`
 
 ## Testing
 
@@ -39,4 +47,11 @@ PLACEHOLDER
 
 ## Coming soon
 
-PLACEHOLDER
+Filter for relevant filenames (“D0010” only)
+Import files using REST via the web.
+
+## Project Owner
+
+* **Owner:** Jaimin Chouhan 
+* **Email:** jaimin.chouhan@gmail.com  
+* **GitHub:** github.com/jaiminchouhan
