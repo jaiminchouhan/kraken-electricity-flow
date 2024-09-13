@@ -52,19 +52,19 @@ them, and saves them to the database.
 
 ## Potential improvements
 
-Filter for relevant filenames (e.g. “D0010” only)
-Import files using REST via the web
-Make use of the headers
-Use a pep 8 linting tool to format
-Validation class
-Better logic for identifying duplicates
-Add more logging as per requirements
-Add a makefile for easy commands
-Add tests for management command
-Add tests for search and filter
-Add negative test cases
-Refactor management command to smaller functions
-Add concise exception handling
+Filter filenames to include only relevant patterns (e.g., "D0010")
+Import files using REST APIs through the web interface
+Utilize headers effectively
+Apply a PEP 8 linting tool for code formatting
+Implement a validation class
+Enhance logic to identify duplicates more effectively
+Incorporate additional logging as required
+Create a Makefile for streamlined command execution
+Develop tests for management commands
+Write tests for search and filter functionalities
+Include negative test cases
+Refactor management commands into smaller, manageable functions
+Add concise and clear exception handling
 
 ## Project Owner
 
