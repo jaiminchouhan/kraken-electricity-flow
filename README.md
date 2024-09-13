@@ -50,10 +50,14 @@ them, and saves them to the database.
 
 PLACEHOLDER
 
-## Coming soon
+## Potential improvements
 
-Filter for relevant filenames (“D0010” only)
+Filter for relevant filenames (e.g. “D0010” only)
 Import files using REST via the web
+Make use of the headers
+Use a pep 8 linting tool to format
+Validation class
+Better logic for identifying duplicates
 
 ## Project Owner
 

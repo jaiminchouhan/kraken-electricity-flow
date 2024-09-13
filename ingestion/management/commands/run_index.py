@@ -7,23 +7,40 @@ from ingestion.models import MpanCore, MeterReadingType, RegisterReading
 
 
 class Command(BaseCommand):
-    help = 'Import electricity meter readings from a UFF file'
+    help = 'Import electricity meter readings from a UFF files in a directory'
 
     def add_arguments(self, parser):
-        parser.add_argument('file_path', type=str, help='The path to the UFF file')
+        parser.add_argument('directory_path', type=str,
+                            help='The path to the directory')
 
     def handle(self, *args, **kwargs):
-        file_path = kwargs['file_path']
-        # Log an error if file not found
+        directory_path = kwargs['directory_path']
+        # Log an error if directory not found
+        if not os.path.isdir(directory_path):
+            self.stdout.write(self.style.ERROR(f"Directory {directory_path} not found"))
+            return
+
+        # Process each file in the directory
+        for filename in os.listdir(directory_path):
+            if filename.endswith('.uff'):
+                file_path = os.path.join(directory_path, filename)
+                self.process_file(file_path)
+
+    def process_file(self, file_path):
+        self.stdout.write(self.style.SUCCESS(f"Processing file: {file_path}"))
+
+        # Check if file exists
         if not os.path.exists(file_path):
             self.stdout.write(self.style.ERROR(f"File {file_path} not found"))
             return
 
         with open(file_path, 'r') as file:
-            meter = None
+            meter_type = None
+            mpan_core = None
 
             for line in file:
                 parts = line.strip().split('|')
+
                 # MpanCore object creation
                 if parts[0] == '026':
                     mpan = parts[1]
@@ -67,6 +84,7 @@ class Command(BaseCommand):
                         reset_number = None
                         reading_flag = parts[4] if len(parts) > 4 else None
                         reading_method = parts[5] if len(parts) > 5 else None
+
                         # Check for existing RegisterReading object
                         existing_reading = RegisterReading.objects.filter(
                             meter_register_id=meter_id,
@@ -77,6 +95,7 @@ class Command(BaseCommand):
                             reading_flag=reading_flag,
                             reading_method=reading_method
                         ).first()
+
                         if not existing_reading:
                             # Saving register reading only if it does not already exist
                             RegisterReading.objects.create(
