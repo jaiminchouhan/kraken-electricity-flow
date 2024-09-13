@@ -48,7 +48,7 @@ them, and saves them to the database.
 
 ## Testing
 
-PLACEHOLDER
+* In a new terminal tab, run `python3 manage.py test` to run the tests
 
 ## Potential improvements
 
@@ -58,6 +58,13 @@ Make use of the headers
 Use a pep 8 linting tool to format
 Validation class
 Better logic for identifying duplicates
+Add more logging as per requirements
+Add a makefile for easy commands
+Add tests for management command
+Add tests for search and filter
+Add negative test cases
+Refactor management command to smaller functions
+Add concise exception handling
 
 ## Project Owner
 
